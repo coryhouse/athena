@@ -6,7 +6,11 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      courses: []
+      courses: [],
+      newCourse: {
+        title: "",
+        category: ""
+      }
     };
   }
 
@@ -25,23 +29,45 @@ class Home extends React.Component {
     deleteCourse(id).then(() => {});
   }
 
+  handleChange = ({ target }) => {
+    const newCourse = {
+      ...this.state.newCourse,
+      [target.name]: target.value
+    };
+    this.setState({ newCourse });
+  };
+
   render() {
     return (
       <>
-        <h1>Home</h1>
+        <h1>{this.props.title}</h1>
 
         <form>
           <div>
-            <label>Title</label>
+            <label htmlFor="title">Title</label>
             <br />
-            <input type="text" onChange={this.handleTitleChange} />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              onChange={this.handleChange}
+              value={this.state.newCourse.title}
+            />
           </div>
 
           <div>
-            <label>Category</label>
+            <label htmlFor="category">Category</label>
             <br />
-            <input type="text" onChange={this.handleCategoryChange} />
+            <input
+              type="text"
+              id="category"
+              name="category"
+              onChange={this.handleChange}
+              value={this.state.newCourse.category}
+            />
           </div>
+
+          <button type="submit">Save Course</button>
         </form>
 
         <ul>
