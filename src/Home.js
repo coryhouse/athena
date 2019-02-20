@@ -13,18 +13,20 @@ class Home extends React.Component {
   // Runs when the component first mounts. So, runs once.
   componentDidMount() {
     getCourses().then(courses => {
-      debugger;
-      this.setState({ courses: courses });
+      this.setState({ courses });
     });
   }
+
   render() {
-    const numbers = [1, 2, 3];
     return (
       <>
-        <h1>Home</h1>{" "}
-        {numbers.map(num => (
-          <div>{num}</div>
-        ))}
+        <h1>Home</h1>
+
+        <ul>
+          {this.state.courses.map(course => {
+            return <li>{course.title}</li>;
+          })}
+        </ul>
       </>
     );
   }
