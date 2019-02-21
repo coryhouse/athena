@@ -26,5 +26,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "jest-dom": "^3.1.2",
+    "react-test-renderer": "^16.8.3",
+    "react-testing-library": "^5.9.0"
+  }
 }

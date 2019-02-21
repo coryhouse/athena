@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 'no title :(' when not passed a title 1`] = `
+Array [
+  <h1>
+    No title :(
+  </h1>,
+  <form>
+    <div>
+      <label
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <br />
+      <input
+        id="title"
+        name="title"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <label
+        htmlFor="category"
+      >
+        Category
+      </label>
+      <br />
+      <input
+        id="category"
+        name="category"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Save Course
+    </button>
+  </form>,
+  <ul />,
+]
+`;
+
+exports[`renders page title when passed a title 1`] = `
+Array [
+  <h1>
+    test
+  </h1>,
+  <form>
+    <div>
+      <label
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <br />
+      <input
+        id="title"
+        name="title"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <label
+        htmlFor="category"
+      >
+        Category
+      </label>
+      <br />
+      <input
+        id="category"
+        name="category"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Save Course
+    </button>
+  </form>,
+  <ul />,
+]
+`;
