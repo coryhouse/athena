@@ -1,8 +1,11 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+import UserContext from "../UserContext";
 
 const TextInput = ({ id, label, name, onChange, value, isInitialFocus }) => {
   const inputEl = useRef();
+
+  useContext(UserContext);
 
   useEffect(() => {
     if (isInitialFocus) {
@@ -11,18 +14,21 @@ const TextInput = ({ id, label, name, onChange, value, isInitialFocus }) => {
   }, [isInitialFocus]);
 
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <br />
-      <input
-        type="text"
-        id={id}
-        ref={inputEl}
-        name={name}
-        onChange={onChange}
-        value={value}
-      />
-    </div>
+    <>
+      <div>Hi {user.username}!</div>
+      <div>
+        <label htmlFor={id}>{label}</label>
+        <br />
+        <input
+          type="text"
+          id={id}
+          ref={inputEl}
+          name={name}
+          onChange={onChange}
+          value={value}
+        />
+      </div>
+    </>
   );
 };
 

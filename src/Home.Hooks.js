@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextInput from "./reusable/TextInput";
 import { getCourses, deleteCourse, saveCourse } from "./api/courseApi";
+import UserContext from "./UserContext";
 
 const NEW_COURSE = Object.freeze({
   title: "",
@@ -46,27 +47,33 @@ function Home(props) {
   return (
     <>
       <h1>{props.title}</h1>
+      <UserContext.Provider
+        value={{
+          id: 1,
+          username: "Bob"
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <TextInput
+            label="Title"
+            id="title"
+            name="title"
+            value={newCourse.title}
+            onChange={handleChange}
+            required
+          />
 
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          label="Title"
-          id="title"
-          name="title"
-          value={newCourse.title}
-          onChange={handleChange}
-          required
-        />
+          <TextInput
+            label="Category"
+            id="category"
+            name="category"
+            onChange={handleChange}
+            value={newCourse.category}
+          />
 
-        <TextInput
-          label="Category"
-          id="category"
-          name="category"
-          onChange={handleChange}
-          value={newCourse.category}
-        />
-
-        <button type="submit">Save Course</button>
-      </form>
+          <button type="submit">Save Course</button>
+        </form>
+      </UserContext.Provider>
 
       <ul>
         {courses.map(course => {
