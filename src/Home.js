@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "./reusable/TextInput";
-import { getCourses, deleteCourse } from "./api/courseApi";
+import { getCourses, deleteCourse, saveCourse } from "./api/courseApi";
+
+const newCourse = {
+  title: "",
+  category: ""
+};
 
 class Home extends React.Component {
   state = {
     courses: [],
-    newCourse: {
-      title: "",
-      category: ""
-    }
+    newCourse
   };
 
   // Runs when the component first mounts. So, runs once.
@@ -35,10 +37,14 @@ class Home extends React.Component {
     this.setState({ newCourse });
   };
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
-    alert("submitted");
-  }
+    saveCourse(this.state.newCourse).then(course => {
+      const courses = [...this.state.courses, course];
+      this.setState({ courses, newCourse });
+      alert("Saved!");
+    });
+  };
 
   render() {
     return (
@@ -54,17 +60,13 @@ class Home extends React.Component {
             onChange={this.handleChange}
           />
 
-          <div>
-            <label htmlFor="category">Category</label>
-            <br />
-            <input
-              type="text"
-              id="category"
-              name="category"
-              onChange={this.handleChange}
-              value={this.state.newCourse.category}
-            />
-          </div>
+          <TextInput
+            label="Category"
+            id="category"
+            name="category"
+            onChange={this.handleChange}
+            value={this.state.newCourse.category}
+          />
 
           <button type="submit">Save Course</button>
         </form>
