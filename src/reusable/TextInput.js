@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-function TextInput({ id, label, name, onChange, value }) {
+const TextInput = ({ id, label, name, onChange, value, isInitialFocus }) => {
+  const inputEl = useRef();
+
+  useEffect(() => {
+    if (isInitialFocus) {
+      inputEl.current.focus();
+    }
+  }, []);
+
   return (
     <div>
       <label htmlFor={id}>{label}</label>
@@ -9,13 +17,14 @@ function TextInput({ id, label, name, onChange, value }) {
       <input
         type="text"
         id={id}
+        ref={inputEl}
         name={name}
         onChange={onChange}
         value={value}
       />
     </div>
   );
-}
+};
 
 TextInput.propTypes = {
   id: PropTypes.string.isRequired,
