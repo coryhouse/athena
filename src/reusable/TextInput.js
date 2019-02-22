@@ -8,7 +8,7 @@ const TextInput = ({ id, label, name, onChange, value, isInitialFocus }) => {
     if (isInitialFocus) {
       inputEl.current.focus();
     }
-  }, []);
+  }, [isInitialFocus]);
 
   return (
     <div>
