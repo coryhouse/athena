@@ -1,18 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
+import TextInput from "./reusable/TextInput";
 import { getCourses, deleteCourse } from "./api/courseApi";
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      courses: [],
-      newCourse: {
-        title: "",
-        category: ""
-      }
-    };
-  }
+  state = {
+    courses: [],
+    newCourse: {
+      title: "",
+      category: ""
+    }
+  };
 
   // Runs when the component first mounts. So, runs once.
   componentDidMount() {
@@ -37,23 +35,24 @@ class Home extends React.Component {
     this.setState({ newCourse });
   };
 
+  handleSubmit(event) {
+    event.preventDefault();
+    alert("submitted");
+  }
+
   render() {
     return (
       <>
-        <h1>{this.props.title || "No title :("}</h1>
+        <h1>{this.props.title}</h1>
 
-        <form>
-          <div>
-            <label htmlFor="title">Title</label>
-            <br />
-            <input
-              type="text"
-              id="title"
-              name="title"
-              onChange={this.handleChange}
-              value={this.state.newCourse.title}
-            />
-          </div>
+        <form onSubmit={this.handleSubmit}>
+          <TextInput
+            label="Title"
+            id="title"
+            name="title"
+            value={this.state.newCourse.title}
+            onChange={this.handleChange}
+          />
 
           <div>
             <label htmlFor="category">Category</label>
@@ -86,5 +85,13 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+Home.defaultProps = {
+  title: "No title :("
+};
 
 export default Home;
